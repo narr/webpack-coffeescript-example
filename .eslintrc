@@ -1,0 +1,6 @@
+{
+  "extends": "airbnb/legacy",
+  "rules": {
+    "no-unused-vars": 0
+  }
+}
