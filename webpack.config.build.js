@@ -14,7 +14,7 @@ module.exports = {
     vendor: [
       'jquery', 'director'
     ],
-    main: ['./index.js']
+    main: ['./index.coffee']
   },
   output: {
     path: distPath,
@@ -22,18 +22,21 @@ module.exports = {
   },
   module: {
     preLoaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['eslint']
+      test: /\.coffee$/,
+      loader: 'coffeelint'
     }],
     loaders: [{
       test: /\.hbs$/,
       loader: 'handlebars?helperDirs[]=' + path.join(__dirname, 'handlebar/helper')
+    }, {
+      test: /\.coffee$/,
+      loader: 'coffee'
     }]
   },
-  eslint: {
+  coffeelint: {
     emitErrors: true,
-    failOnHint: true
+    failOnErrors: true,
+    failOnWarns: true
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
